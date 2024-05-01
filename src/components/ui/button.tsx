@@ -19,21 +19,12 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
-      appearance: {
-        // default: `${bbb}-foreground`,
-        default: "",
-        primary: "",
-        secondary: "",
-        tertiary: "",
+      fullWidth: {
+        true: "w-full",
       },
-      // variantColor: {
-      //   default: "red-500"
-      // },
-
       size: {
         default: "h-10 px-4 py-2",
-//3",
-
+        sm: "h-9 px-3 py-1",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
       },
@@ -41,27 +32,25 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
-      appearance: "default",
+      fullWidth: false,
     },
   }
 )
 
-// export interface ButtonProps
-//   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-//     VariantProps<typeof buttonVariants> {
-//   asChild?: boolean
-//   variantColor?: "primary" | "danger" | "red"
-// }
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
 
 
 
-const Button = React.forwardRef<HTMLButtonElement, any>(
-  ({ className, size, appearance, variantColor="danger", asChild = false, ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, size, variant, fullWidth, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
-    console.log(variantColor)
     return (
       <Comp
-        className={cn(buttonVariants({ size, className, appearance}))}
+        className={cn(buttonVariants({ size, className, variant, fullWidth}))}
         ref={ref}
         {...props}
       />
