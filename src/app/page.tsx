@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { TabsList, Tabs,TabsTrigger, TabsContent } from "@/components/ui/tabs"
 // import {
 //   Tabs,
 //   TabsContent,
@@ -9,6 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 // } from "@/components/ui/tabs"
 
 import Tab from "@/components/ui/tabs/Tabs"
+// import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs"
+// import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs"
 
 export default function Home() {
   return (
@@ -47,6 +50,27 @@ export default function Home() {
         <Tab.Pabel>タブ3の内容</Tab.Pabel>
       </Tab.PanelList>
     </Tab.Group>
+    {/* <Tabs defaultValue="imai" className="w-[600px]">
+    <TabsList className="border-b items-center justify-center grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] inline-flex font-medium">
+      <TabsTrigger value="imai" className="border-b-2 border-[#0000] data-[state=active]:border-black disabled:border-[#0000] text-[#65717b] disabled:text-[#65717b] hover:border-black items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed data-[state=active]:text-black hover:text-black min-h-12">Imai</TabsTrigger>
+      <TabsTrigger value="m88" className='border-b-2 border-[#0000] data-[state=active]:border-black disabled:border-[#0000] text-[#65717b] disabled:text-[#65717b] hover:border-black items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed data-[state=active]:text-black hover:text-black min-h-12'>Mytty</TabsTrigger>
+      <TabsTrigger value="mytty" className='border-b-2 border-[#0000] data-[state=active]:border-black disabled:border-[#0000] text-[#65717b] disabled:text-[#65717b] hover:border-black items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed data-[state=active]:text-black hover:text-black min-h-12'>Mytty</TabsTrigger>
+    </TabsList>
+    <TabsContent value="imai" className="">imai</TabsContent>
+    <TabsContent value="shota">shotaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</TabsContent>
+  </Tabs> */}
+  <Tabs defaultValue="tab-a" className="w-[600px]">
+    <TabsList>
+      <TabsTrigger value="tab-a">Tab A</TabsTrigger>
+      <TabsTrigger value="tab-b">Tab B</TabsTrigger>
+    </TabsList>
+    <TabsContent value="tab-a">
+      Tab A Content
+    </TabsContent>
+    <TabsContent value="tab-b">
+      Tab B Content
+    </TabsContent>
+  </Tabs>
     </>
   )
 }

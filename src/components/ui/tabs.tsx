@@ -1,26 +1,43 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import * as TabsPrimitive from "@radix-ui/react-tabs"
+import  React from 'react'
+import * as TabsPrimitive from '@radix-ui/react-tabs'
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
+import { type VariantProps, cva } from 'class-variance-authority'
 
 const Tabs = TabsPrimitive.Root
 
+const TabsListVariants = cva(
+  'border-b inline-flex items-center font-medium w-full',
+  {
+    variants: {
+      evenlyDistribution: {
+        true: 'grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] justify-center',
+      },
+    },
+    defaultVariants: {
+      evenlyDistribution: false
+    }
+  }
+)
+
+export interface TabsListProps extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>,
+  VariantProps<typeof TabsListVariants>
+{}
+
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
+  TabsListProps
+>(({ evenlyDistribution, className, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
-    className={cn(
-      "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
-      className
-    )}
+    className={cn(TabsListVariants({ evenlyDistribution, className }))}
     {...props}
   />
 ))
 TabsList.displayName = TabsPrimitive.List.displayName
+
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
@@ -29,8 +46,8 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
-      className
+      'border-b-2 border-[#0000] data-[state=active]:border-black px-4 disabled:border-[#0000] text-[#65717b] disabled:text-[#65717b] hover:border-black items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed data-[state=active]:text-black hover:text-black h-12',
+      className,
     )}
     {...props}
   />
@@ -44,8 +61,8 @@ const TabsContent = React.forwardRef<
   <TabsPrimitive.Content
     ref={ref}
     className={cn(
-      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      className
+      '',
+      className,
     )}
     {...props}
   />
